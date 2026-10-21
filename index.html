@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ghost Roommate</title>
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1b1430;--card:#2a2045;--glow:#b9f6ff;--note:#fff59d}
+*{box-sizing:border-box}body{margin:0;font-family:'Patrick Hand',cursive;background:radial-gradient(circle at 50% 0,#3a2a63,var(--bg) 70%);color:#eee;min-height:100vh}
+header{text-align:center;padding:18px 10px 0}h1{font-family:Creepster,cursive;font-size:2.6rem;margin:0;color:var(--glow);text-shadow:0 0 12px #7ff}
+.ghost{width:120px;height:140px;margin:10px auto;position:relative;animation:float 3s ease-in-out infinite}
+.ghost .body{width:120px;height:130px;background:#f4f8ff;border-radius:60px 60px 10px 10px;opacity:.9;box-shadow:0 0 30px #9ff;position:relative}
+.ghost .body:after{content:"";position:absolute;bottom:-12px;left:0;right:0;height:24px;background:radial-gradient(circle at 12px 0,#f4f8ff 12px,transparent 13px) repeat-x;background-size:24px 24px}
+.eye{position:absolute;top:45px;width:16px;height:22px;background:#222;border-radius:50%}.eye.l{left:32px}.eye.r{right:32px}
+.mouth{position:absolute;top:80px;left:50%;transform:translateX(-50%);width:26px;height:12px;border:3px solid #222;border-top:0;border-radius:0 0 20px 20px}
+.mad .mouth{border-radius:20px 20px 0 0;border:3px solid #222;border-bottom:0;top:86px}.meh .mouth{height:0;border-radius:0}
+.blush{position:absolute;top:70px;width:14px;height:8px;background:#f9a;border-radius:50%;opacity:0}.happy .blush{opacity:.8}.blush.l{left:20px}.blush.r{right:20px}
+@keyframes float{50%{transform:translateY(-12px)}}
+#mood{text-align:center;font-size:1.2rem;color:var(--glow)}
+main{max-width:480px;margin:auto;padding:12px}
+.panel{background:var(--card);border-radius:16px;padding:14px;margin:12px 0;box-shadow:0 4px 20px #0006}
+.meter{height:18px;background:#111;border-radius:9px;overflow:hidden}.meter div{height:100%;background:linear-gradient(90deg,#f66,#fd6,#6f9);transition:width .6s}
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:8px}button{font-family:inherit;font-size:1.05rem;border:0;border-radius:12px;padding:10px;background:#43356e;color:#fff;cursor:pointer}button:active{transform:scale(.96)}
+input{width:100%;font-family:inherit;font-size:1.1rem;padding:10px;border-radius:10px;border:0;margin:6px 0}
+.note{background:var(--note);color:#333;padding:12px 14px;margin:10px 4px;font-size:1.15rem;box-shadow:3px 4px 8px #0008;transform:rotate(var(--r));position:relative}
+.note:before{content:"";position:absolute;top:-8px;left:45%;width:40px;height:16px;background:#fff8;transform:rotate(-4deg)}.note small{display:block;color:#776;font-size:.85rem;margin-top:4px}
+.todo{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px dashed #555}.todo button{padding:4px 10px;font-size:.9rem}
+.party{position:fixed;inset:0;pointer-events:none;overflow:hidden}.conf{position:absolute;top:-20px;font-size:24px;animation:fall 3s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+h2{margin:0 0 8px;color:var(--glow)}
+</style></head><body>
+<header><h1>Ghost Roommate</h1><div id="ghost" class="ghost"><div class="body"><div class="eye l"></div><div class="eye r"></div><div class="blush l"></div><div class="blush r"></div><div class="mouth"></div></div></div><div id="mood"></div></header>
+<main>
+<div class="panel"><h2>Relationship: <span id="relLbl"></span></h2><div class="meter"><div id="rel"></div></div></div>
+<div class="panel"><h2>Tattle on yourself</h2><div class="quick" id="quick"></div><input id="custom" placeholder="something else you did..."><button id="logBtn" style="width:100%">Confess</button></div>
+<div class="panel"><h2>Sticky notes on the fridge</h2><div id="notes"></div></div>
+<div class="panel"><h2>Your to-do list (the ghost is watching)</h2><input id="todoIn" placeholder="add a task"><div id="todos"></div></div>
+</main><div class="party" id="party"></div>
+<script src="app.js"></script></body></html>
